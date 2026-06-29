@@ -5,7 +5,9 @@ metadata:
   labels:
     {{- include "sshpiper.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  {{- with .Values.replicaCount }}
+  replicas: {{ . }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "sshpiper.selectorLabels" . | nindent 6 }}
